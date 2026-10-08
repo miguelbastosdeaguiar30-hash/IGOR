@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Igor.com</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      border: 0;
+      border-radius: 16px;
+      background: #e00000;
+      color: #fff;
+      font-size: clamp(32px, 8vw, 80px);
+      font-weight: 900;
+      padding: 28px 70px;
+      min-width: 260px;
+      cursor: pointer;
+      box-shadow: 0 10px 0 #a00000;
+      transition: transform .08s, box-shadow .08s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:active {
+      transform: translateY(10px);
+      box-shadow: 0 0 0 #a00000;
+    }
+  </style>
+</head>
+<body>
+  <button id="igor">IGOR</button>
+
+  <audio id="igor1" src="igor1.mp3" preload="auto"></audio>
+  <audio id="igor2" src="igor2.mp3" preload="auto"></audio>
+  <audio id="igor3" src="igor3.mp3" preload="auto"></audio>
+
+  <script>
+    const botao = document.getElementById("igor");
+    const sons = [
+      document.getElementById("igor1"),
+      document.getElementById("igor2"),
+      document.getElementById("igor3")
+    ];
+
+    botao.addEventListener("click", () => {
+      // Para qualquer variação que ainda esteja tocando.
+      sons.forEach(som => {
+        som.pause();
+        som.currentTime = 0;
+      });
+
+      // Escolhe uma das 3 aleatoriamente.
+      const escolhido = sons[Math.floor(Math.random() * sons.length)];
+      escolhido.play();
+    });
+  </script>
+</body>
+</html>
